@@ -2,16 +2,18 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
 import { HeaderApp } from "./components/HeaderApp.js";
-import { ListProducts } from "./components/ListProducts";
+import { ListProducts } from "./components/Products/ListProducts";
 
 const App = () => {
   return (
-    <Container>
-      <div className="App">
-        <HeaderApp />
-        <ListProducts />
-      </div>
-    </Container>
+    <>
+      <HeaderApp />
+      <Container>
+        <div className="App">
+          <ListProducts />
+        </div>
+      </Container>
+    </>
   );
 };
 
