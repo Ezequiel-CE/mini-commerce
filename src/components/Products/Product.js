@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, Card, Row, Button, Badge } from "react-bootstrap";
 import "../../assets/css/style.css";
+import { saveLastInterestProduct } from "../../app/services/storageServices";
 
 export const Product = ({ item }) => {
   const { title, image, price, description, category } = item;
@@ -31,7 +32,10 @@ export const Product = ({ item }) => {
             <Button variant="warning">Agregar al carrito</Button>
           </Col>
           <Col>
-            <Button variant="primary">
+            <Button
+              onClick={() => saveLastInterestProduct(title)}
+              variant="primary"
+            >
               Precio <Badge bg="secondary">${price}</Badge>
             </Button>
           </Col>
