@@ -11,6 +11,10 @@ export const AlertProduct = () => {
       setProduct(lastProduct);
       setShow(true);
     }
+
+    return () => {
+      sessionStorage.removeItem("last sessions product");
+    };
   }, []);
 
   if (show) {
