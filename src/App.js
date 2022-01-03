@@ -1,20 +1,19 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Container } from "react-bootstrap";
 import { HeaderApp } from "./components/HeaderApp.js";
-import { ListProducts } from "./components/Products/ListProducts";
-import { AlertProduct } from "./components/Products/AlertProduct";
+import { Home } from "./views/Home";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { ProductView } from "./views/ProductView";
 
 const App = () => {
   return (
     <>
       <HeaderApp />
-      <Container>
-        <div className="App">
-          <AlertProduct />
-          <ListProducts />
-        </div>
-      </Container>
+      <Switch>
+        <Route path={"/product/:id"} exact component={ProductView} />
+        <Route path={"/"} exact component={Home} />
+        <Route render={() => <Redirect to={"/"} />} />
+      </Switch>
     </>
   );
 };

@@ -13,12 +13,12 @@ export const ShoppingCart = () => {
     setProductCar(productDB);
   });
 
-  const getTotalPrice = () => {
-    const total = productCart?.reduce((acc, item) => acc + item.price, 0);
-    setTotalPrice(total.toFixed(2));
-  };
-
   useEffect(() => {
+    //lo paso aca para que no salga la warning
+    const getTotalPrice = () => {
+      const total = productCart?.reduce((acc, item) => acc + item.price, 0);
+      setTotalPrice(total.toFixed(2));
+    };
     if (productCart.length > 0) {
       getTotalPrice();
     }
