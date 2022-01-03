@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Container } from "react-bootstrap";
 import { HeaderApp } from "./components/HeaderApp.js";
 import { ListProducts } from "./components/Products/ListProducts";
+import { AlertProduct } from "./components/Products/AlertProduct";
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       <HeaderApp />
       <Container>
         <div className="App">
+          <AlertProduct />
           <ListProducts />
         </div>
       </Container>

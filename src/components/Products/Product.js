@@ -1,9 +1,16 @@
 import React from "react";
 import { Col, Card, Row, Button, Badge } from "react-bootstrap";
 import "../../assets/css/style.css";
+import { saveLastInterestProduct } from "../../app/services/storageServices";
+import db from "../../app/db/db.js";
 
 export const Product = ({ item }) => {
   const { title, image, price, description, category } = item;
+
+  const addProductToCart = ({ title, price, category }) => {
+    db.cart.add({ title, price, category });
+  };
+
   return (
     <div className="col-lg-4 d-flex align-items-stretch">
       <Card style={{ marginBottom: "15px", padding: 10 }}>
@@ -28,10 +35,15 @@ export const Product = ({ item }) => {
         </Card.Body>
         <Row>
           <Col>
-            <Button variant="warning">Agregar al carrito</Button>
+            <Button variant="warning" onClick={() => addProductToCart(item)}>
+              Agregar al carrito
+            </Button>
           </Col>
           <Col>
-            <Button variant="primary">
+            <Button
+              onClick={() => saveLastInterestProduct(title)}
+              variant="primary"
+            >
               Precio <Badge bg="secondary">${price}</Badge>
             </Button>
           </Col>
