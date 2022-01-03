@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { ShoppingCartItem } from "./ShoppingCartItem";
 import { useLiveQuery } from "dexie-react-hooks";
@@ -6,15 +6,23 @@ import db from "../../app/db/db.js";
 
 export const ShoppingCart = () => {
   const [productCart, setProductCar] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useLiveQuery(async () => {
     const productDB = await db.cart.toArray();
     setProductCar(productDB);
   });
 
-  const getTotalPrice = (productArr) => {
-    return productArr.reduce((acc, item) => acc + item.price, 0);
+  const getTotalPrice = () => {
+    const total = productCart?.reduce((acc, item) => acc + item.price, 0);
+    setTotalPrice(total.toFixed(2));
   };
+
+  useEffect(() => {
+    if (productCart.length > 0) {
+      getTotalPrice();
+    }
+  }, [productCart]);
 
   return (
     <>
@@ -30,9 +38,7 @@ export const ShoppingCart = () => {
               <ShoppingCartItem key={product.id} item={product} />
             ))}
             <NavDropdown.Divider />
-            <NavDropdown.Item>
-              Total : $ {getTotalPrice(productCart)}
-            </NavDropdown.Item>
+            <NavDropdown.Item>Total : $ {totalPrice}</NavDropdown.Item>
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>
