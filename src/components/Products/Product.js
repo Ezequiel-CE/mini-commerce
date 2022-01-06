@@ -8,7 +8,7 @@ export const Product = ({ item }) => {
   const { title, image, price, description, category } = item;
 
   const addProductToCart = ({ title, price, category }) => {
-    db.cart.add({ title, price, category });
+    db.cart.add({ title, price, category, image, description });
   };
 
   return (

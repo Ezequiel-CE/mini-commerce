@@ -2,6 +2,6 @@ import Dexie from "dexie";
 
 const db = new Dexie("ShoppingEcommerce");
 
-db.version(1).stores({ cart: "++id,price,title,category" });
+db.version(1).stores({ cart: "++id,price,title,category,image,description" });
 
 export default db;

@@ -14,7 +14,6 @@ export const PurchaseView = ({ history }) => {
       <Row>
         <Col xs={6}>
           <Button variant="danger" onClick={handleCancelButton}>
-            {" "}
             Cancelar
           </Button>
         </Col>
